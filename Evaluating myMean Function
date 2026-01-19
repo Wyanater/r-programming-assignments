@@ -1,0 +1,32 @@
+Result:
+After inputting the provided code...
+
+assignment2 <- c(16, 18, 14, 22, 27, 17, 19, 17, 17, 22, 20, 22)
+
+myMean <- function(assignment2) {
+  return(sum(assignment) / length(someData))
+}
+
+myMean(assignment2)
+
+The output from RStudio states: 
+Error in myMean(assignment2) : object 'assignment' not found
+
+Why it fails:
+The function fails because of variable name mismatches.
+
+In R, the names used inside the function body must match the names defined in the function's arguments (the inputs).
+
+To work correctly, the variables inside the sum() and length() functions must exactly match the name provided in the function header.
+
+Corrected Version:
+
+assignment2 <- c(16, 18, 14, 22, 27, 17, 19, 17, 17, 22, 20, 22)
+
+myMean <- function(assignment2) {
+  return(sum(assignment2) / length(assignment2))
+}
+
+myMean(assignment2)
+
+The output now states: [1] 19.25 , instead of ERROR!
