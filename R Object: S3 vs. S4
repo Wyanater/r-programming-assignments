@@ -1,0 +1,35 @@
+S3 Example:
+s <- list(Name = "Wyatt", Age = 21, GPA = 3.5) 
+
+> s
+
+Output:
+$Name
+[1] "Wyatt"
+$Age
+[1] 21
+$GPA
+[1] 3.5
+
+S4 Example:
+> setClass("USF_Student",
+         slots = list(
+           Name = "character", 
+           Age = "numeric", 
+           GPA = "numeric"
+         )
+)
+> s2 <- new("USF_Student",Name="Wyatt", Age=21, GPA=3.5)
+
+>s2
+
+Output:
+An object of class "USF_Student"
+Slot "Name":
+[1] "Wyatt"
+
+Slot "Age":
+[1] 21
+
+Slot "GPA":
+[1] 3.5
