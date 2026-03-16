@@ -1,0 +1,51 @@
+install.packages("AER")
+library(AER)
+library(lattice)
+library(ggplot2)
+
+# Load the Dataset
+data("OlympicTV")
+
+# 1. Base R: Rights cost by Network (Boxplot)
+plot(factor(OlympicTV$network), OlympicTV$rights,
+     main = "Base: Rights Cost by Network",
+     xlab = "Network",
+     ylab = "Rights Cost (Millions)",
+     col = "lightblue")
+
+# 2. Base R: Distribution of Rights costs
+hist(OlympicTV$rights,
+     main = "Base: Distribution of Rights Costs",
+     xlab = "Rights Cost",
+     col = "black", border = "white")
+
+library(lattice)
+
+# 1. Lattice Boxplot: Rights cost by Network
+bwplot(rights ~ network, 
+       data = OlympicTV,
+       main = "Lattice: Distribution by Network",
+       xlab = "Network", ylab = "Rights Cost")
+
+# 2. Lattice Dotplot: Rights cost by Host City
+dotplot(row.names(OlympicTV) ~ rights, 
+        data = OlympicTV,
+        main = "Lattice: Rights Cost by City",
+        xlab = "Rights Cost")
+
+library(ggplot2)
+
+# 1. ggplot2 Scatter Plot: Rights cost by City, colored by Network
+ggplot(OlympicTV, aes(x = row.names(OlympicTV), y = rights, color = network)) +
+  geom_point(size = 4) +
+  labs(title = "ggplot2: Rights Cost by Host City",
+       x = "Host City",
+       y = "Rights Cost (Millions)") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+# 2. ggplot2 Bar Plot: Total cost per Network
+ggplot(OlympicTV, aes(x = network, y = rights, fill = network)) +
+  geom_boxplot() +
+  labs(title = "ggplot2: Cost Distribution by Network") +
+  theme_light()
