@@ -2,3 +2,32 @@ install.packages("devtools")
 
 library(devtools)
 create("Friedman")
+
+devtools::create("Friedman")
+
+Friedman/DESCRIPTION
+Package: Friedman
+Title: Implementation of the Friedman Test
+Version: 0.0.0.9000
+Authors@R: 
+    person("Garry", "Bach", 
+           email = "bach1@usf.edu", 
+           role = c("aut", "cre"))
+Description: Provides tools for performing the Friedman test, a non-parametric 
+    alternative to the repeated measures ANOVA. Includes functions for 
+    calculating the Friedman statistic, p-values, and conducting Nemenyi 
+    post-hoc tests for group comparisons.
+Depends: 
+    R (>= 3.1.2)
+Imports: 
+    ggplot2,
+    dplyr
+License: CC0
+LazyData: true
+URL: https://github.com/Wyanater/r-programming-assignments
+BugReports: https://github.com/Wyanater/r-programming-assignments/issues
+
+
+
+check("Friedman")
+build("Friedman")
