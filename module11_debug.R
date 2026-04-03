@@ -1,0 +1,40 @@
+tukey.outlier <- function(x, k = 1.5) {
+  q1 <- quantile(x, 0.25, na.rm = TRUE)
+  q3 <- quantile(x, 0.75, na.rm = TRUE)
+  iqr <- q3 - q1
+  x < (q1 - k * iqr) | x > (q3 + k * iqr)
+}
+
+corrected_tukey <- function(x) {
+  # --- Defensive Programming Checks ---
+  if (!is.matrix(x)) {
+    stop("x must be a matrix.")
+  }
+  
+  if (!is.numeric(x)) {
+    stop("x must be a numeric matrix.")
+  }
+  
+  outliers <- array(TRUE, dim = dim(x))
+  
+  for (j in seq_len(ncol(x))) {
+    # FIX: Use '&' instead of '&&' 
+    outliers[, j] <- outliers[, j] & tukey.outlier(x[, j])
+  }
+  
+  # Initialize the result vector
+  outlier.vec <- logical(nrow(x))
+  
+  for (i in seq_len(nrow(x))) {
+    outlier.vec[i] <- all(outliers[i, ])
+  }
+  
+  return(outlier.vec)
+}
+
+# --- Validation ---
+set.seed(123)
+test_mat <- matrix(rnorm(50), nrow = 10)
+
+result <- corrected_tukey(test_mat)
+print(result)
