@@ -1,0 +1,56 @@
+---
+title: "My R Markdown Primer"
+author: "metadata"
+date: "2026-04-05"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown & Brief Intro.
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+** What is R Markdown? **
+
+R Markdown is a file format that allows you to turn your data analysis into high-quality documents, reports, and presentations. It is built on Literate Programming, a concept where the explanation (narrative text) and the machine code (R chunks) exist in the same document.
+
+
+## Narrative 
+
+Transitioning from running scripts in RStudio to authoring in R Markdown provides a more integrated workflow for data analysis. While I am accustomed to using Base R for granular control over my data frames and visualizations, the Markdown environment allows me to document the "why" behind my code as I write it. This process ensures that my logic remains transparent, making it easier to revisit my analysis later or share it with others without needing to explain every step manually.
+
+
+
+## LaTeX Math Expression
+
+The Pythagorean theorem is $a^2 + b^2 = c^2$, which is used for right triangles.
+
+
+## 2 R Code Chunks
+
+Chunk 1:
+{r cars}
+* Load the built-in cars dataset *
+data(cars)
+
+* Display the first few rows and summary statistics *
+head(cars)
+summary(cars)
+
+Chunk 2:
+{r ggplot2, message=FALSE, warning=FALSE}
+* Load the ggplot2 library *
+library(ggplot2)
+
+* Create a scatter plot with a regression line *
+ggplot(cars, aes(x = speed, y = dist)) +
+  geom_point(color = "steelblue") +
+  geom_smooth(method = "lm", color = "darkred") +
+  theme_minimal() +
+  labs(title = "Speed vs. Stopping Distance",
+       x = "Speed (mph)",
+       y = "Stopping Distance (ft)")
+       
